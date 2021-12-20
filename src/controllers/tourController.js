@@ -3,6 +3,8 @@ import TourInfos from "../models/tour";
 class TourController {
     //create tour in db
     static async createTour(req, res) {
+      //dupassingemo kugirango ibya user ibibike
+      req.body.user=req.user._id;
       const tour = await TourInfos.create(req.body);
       if (!tour) {
         return res.status(404).json({ error: "tour not registered" });

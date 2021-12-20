@@ -16,7 +16,12 @@ const tourSchema=new mongoose.Schema(
         dateScheduled:Date,
         dueDate:Date,
         phone:String,
-       tripDescription:String
+       tripDescription:String,
+       user:{
+           type:mongoose.Schema.ObjectId,
+           ref:"User",
+           
+       }
     },
 
     {
@@ -24,6 +29,14 @@ const tourSchema=new mongoose.Schema(
     }
     
 )
+//idufasha kubona daata zi umu user not it's id
+tourSchema.pre(/^find/,function(next){
+    this.populate({
+        path:"user",
+        select:"lastname email address"
+    })
+    next();
+})
 const tour=mongoose.model('Tour',tourSchema);
 
 export default tour;

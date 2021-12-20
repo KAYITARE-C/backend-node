@@ -4,6 +4,7 @@ const userSchema=new mongoose.Schema(
     {
         firstname:String,
         lastname:String,
+
         email:{
             type:String,
             required:true,
@@ -17,6 +18,11 @@ const userSchema=new mongoose.Schema(
         address:{
             type:String,
             default:"Rwanda"
+        },
+        role:{
+            type:String,
+            default:"user",
+            enum:["admin","user"]
         },
         gender:{
             type:String,
